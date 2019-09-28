@@ -1,39 +1,27 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vzomber <marvin@42.fr>                     +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/03/08 18:34:19 by vzomber           #+#    #+#              #
-#    Updated: 2018/03/08 18:34:20 by vzomber          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = fractol
 
-NAME = 
+SRC =	src/main.c src/additional.c
 
-SRC =	src/main.c
+OBJ =	main.o additional.o
 
-OBJ =	$(SRC:.c=.o)
-
-FLAGS = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
+FLAGS = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit 
 
 all: $(NAME)
 
-$(OBJ): $(SRC) includes/
-	@gcc  -c $(SRC) 
+$(OBJ): $(SRC)
+	@gcc -c $(SRC) -I ./includes
 
-$(NAME): $(OBJ) includes/
-	@make -C libft
+$(NAME): $(OBJ)
+	#@make -C libft
 	@gcc $(FLAGS) $(OBJ) -o $(NAME) -L./libft -lft 
-	@echo "make for fractol: Done"
+	@echo "make for fractol: Done" 
 
 clean:
 	@rm -f $(OBJ)
-	@make -C libft clean
+	#@make -C libft clean
 
 fclean: clean
 	@rm -f $(NAME)
-	@make -C libft fclean
+	#@make -C libft fclean
 
 re: fclean all
