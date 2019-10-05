@@ -1,10 +1,10 @@
 NAME = fractol
 
-SRC =	src/main.c src/additional.c
+SRC =	src/main.c src/additional.c src/draw.c
 
-OBJ =	main.o additional.o
+OBJ =	main.o additional.o draw.o
 
-FLAGS = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit 
+FLAGS = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit -fsanitize=address
 
 all: $(NAME)
 
