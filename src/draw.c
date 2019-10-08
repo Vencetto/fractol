@@ -17,44 +17,64 @@
 #define RE_END 1
 #define IM_START -1
 #define IM_END 1
-
+/*
 void	draw_mandelbrot(t_o *o)
 {
 	int		bpp;
 	int		size_line;
 	int		endian;
-	int aa, bb;
-	int a, b;
-
+	float xscale, yscale, zx, zy, cx, tempx, cy;
+	
 //	o->img = mlx_new_image(o->mlx, W_WD, W_HT);
 //	o->img_data = mlx_get_data_addr(o->img, &bpp, &size_line, &endian);
 
+	xscale = 1; 
+	yscale = 1;
+	
 	for (int x = 0; x < W_HT; x++)
 	{
 		for (int y = 0; y < W_WD; y++)
-		{
-			int n = 0, z = 0;
+		{ 
+			// c_real 
+			cx = x * xscale + left; 
 
-			while (n < 100) {
-				aa = a*a - b*b;
-				bb = 2 * a * b;
+			// c_imaginary 
+			cy = y * yscale + top; 
 
-				a = aa;
-				b = bb;
+			// z_real 
+			zx = 0; 
 
-				if (ft_abs(a + b) > 16)
-					break;
+			// z_imaginary 
+			zy = 0; 
+			count = 0; 
 
-				n++;
-			}
+			// Calculate whether c(c_real + c_imaginary) belongs 
+			// to the Mandelbrot set or not and draw a pixel 
+			// at coordinates (x, y) accordingly 
+			// If you reach the Maximum number of iterations 
+			// and If the distance from the origin is 
+			// greater than 2 exit the loop 
+			while ((zx * zx + zy * zy < 4) && (count < MAXCOUNT)) 
+			{ 
+				// Calculate Mandelbrot function 
+				// z = z*z + c where z is a complex number 
 
-			int bright;
-			if (n == 100) {
-				bright = 255;
-			}
-			else 
-				bright = 0;
+				// tempx = z_real*_real - z_imaginary*z_imaginary + c_real 
+				tempx = zx * zx - zy * zy + cx; 
 
+				// 2*z_real*z_imaginary + c_imaginary 
+				zy = 2 * zx * zy + cy; 
+
+				// Updating z_real = tempx 
+				zx = tempx; 
+
+				// Increment count 
+				count = count + 1; 
+			} 
+
+			// To display the created fractal 
+			putpixel(x, y, count); 
+				
 			//int tmp = (x * W_HT + y) * 4;
 			mlx_pixel_put(o->mlx, o->win, y, x, bright);
 //			o->img_data[tmp + 0] = 0;
@@ -65,6 +85,7 @@ void	draw_mandelbrot(t_o *o)
 	}
 //		mlx_put_image_to_window(o->mlx, o->win, o->img, 0, 0);
 }
+*/
 
 void	draw_fractal(t_o *o, char **fractal_name)
 {
