@@ -19,6 +19,7 @@
 # include <math.h>
 # include <stdlib.h>
 
+# define MAX_ITER 64
 # define W_WD 1000
 # define W_HT 1000
 
